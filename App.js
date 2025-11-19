@@ -2,9 +2,13 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Platform } from "react-native";
 
 export default function App() {
-  // 检测是否启用了新架构
-  const isNewArchEnabled = global.nativeFabricUIManager != null;
+  // 检测新架构特性
+  const isFabricEnabled = global.nativeFabricUIManager != null;
   const isTurboModuleEnabled = global.__turboModuleProxy != null;
+  // Bridgeless 检测：检查是否没有传统的 Bridge
+  // 注意：在 RN 0.73 中，Bridgeless 可能未完全启用（0.74+ 才默认启用）
+  const isBridgelessEnabled =
+    global.__fbBatchedBridge == null && isFabricEnabled;
 
   return (
     <View style={styles.container}>
@@ -26,10 +30,10 @@ export default function App() {
         <Text
           style={[
             styles.value,
-            isNewArchEnabled ? styles.enabled : styles.disabled,
+            isFabricEnabled ? styles.enabled : styles.disabled,
           ]}
         >
-          {isNewArchEnabled ? "✅ 已启用" : "❌ 未启用"}
+          {isFabricEnabled ? "✅ 已启用" : "❌ 未启用"}
         </Text>
       </View>
 
@@ -50,10 +54,10 @@ export default function App() {
         <Text
           style={[
             styles.value,
-            isNewArchEnabled ? styles.enabled : styles.disabled,
+            isBridgelessEnabled ? styles.enabled : styles.disabled,
           ]}
         >
-          {isNewArchEnabled ? "✅ 已启用" : "❌ 未启用"}
+          {isBridgelessEnabled ? "✅ 已启用" : "❌ 未启用"}
         </Text>
       </View>
 

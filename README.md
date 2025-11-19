@@ -2,6 +2,12 @@
 
 这是一个基于 Expo SDK 50 和 React Native 0.73 的学习项目，用于学习和测试 RN 0.73 的相关 API。
 
+**新架构支持**：
+- ✅ **Fabric** 渲染引擎：已启用
+- ✅ **TurboModule**：已启用
+- ❌ **Bridgeless 模式**：未启用（在 RN 0.73 + Expo 中不稳定）
+- ✅ **Hermes** 引擎：已启用
+
 ## 快速启动
 
 ### 日常开发启动命令
@@ -187,11 +193,13 @@ npm start -- --reset-cache
 
 ### 新架构特性
 
-本项目已启用 React Native 的新架构，包括：
+本项目已启用 React Native 0.73 的新架构，包括：
 
 1. **Fabric 渲染器** - 新的 UI 渲染系统
 2. **TurboModule** - 更高效的原生模块系统
-3. **Bridgeless 模式** - 移除旧的 Bridge，提升性能
+3. **Bridgeless 模式** - 移除旧的 Bridge，直接通信（已在原生代码中显式启用）
+
+> ⚠️ 注意：Bridgeless 在 RN 0.73 中是实验性功能，本项目已启用以匹配生产环境配置。
 
 #### 配置位置
 
@@ -199,10 +207,15 @@ npm start -- --reset-cache
 
 - `android/gradle.properties` 中设置 `newArchEnabled=true`
 - `hermesEnabled=true` 已启用 Hermes 引擎
+- **Bridgeless 模式**：在 RN 0.73 + Expo 中**暂未启用**
+  - 原因：Expo SDK 50 对 Bridgeless 的支持还不稳定，启用后会导致应用崩溃
+  - 当前使用传统 Bridge + Fabric + TurboModule 的组合
+  - 未来版本的 RN 和 Expo 将提供更好的 Bridgeless 支持
 
 **iOS 配置**：
 
 - `app.json` 中设置 `"newArchEnabled": true`
+- `ios/Podfile.properties.json` 中设置 `"newArchEnabled": "true"`
 - Podfile 会自动配置新架构支持
 
 ## 环境要求
