@@ -2,6 +2,8 @@
 
 # dependencies
 node_modules/
+.pnp
+.pnp.js
 
 # Expo
 .expo/
@@ -17,6 +19,37 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+*.apk
+*.aab
+*.ipa
+
+# Android/IntelliJ
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+.cxx/
+*.keystore
+!debug.keystore
+
+# iOS
+*.xcworkspace
+!default.xcworkspace
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+Pods/
+*.ipa
+*.dSYM.zip
+*.dSYM
+ios/**/*.mode1v3
+ios/**/*.mode2v3
+ios/**/*.moved-aside
+ios/**/*.pbxuser
+ios/**/*.perspectivev3
+DerivedData/
 
 # Metro
 .metro-health-check*
@@ -32,9 +65,22 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
+
+# testing
+coverage/
+.nyc_output
+
+# misc
+.vscode/
+.idea/
+*.log
+*.lock
+!package-lock.json
+!yarn.lock
 
 # generated native folders
 /ios
