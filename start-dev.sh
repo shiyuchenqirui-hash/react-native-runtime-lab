@@ -2,6 +2,7 @@
 
 # React Native 0.73 开发启动脚本
 # 自动清理端口、设置 adb 转发并启动 Metro 服务器
+# TODO: 启动前应让用户确认端口归属，避免强制结束其他应用；当前推荐直接 npm start。
 
 echo "🧹 清理 8081 端口..."
 lsof -ti:8081 | xargs kill -9 2>/dev/null

@@ -31,6 +31,7 @@ export default function NewArchitectureExample() {
     },
     bridgeless: {
       name: 'Bridgeless 模式',
+      // TODO: Fabric 信号不等于 Bridgeless；与 App.js 统一前先做原生设备对照验证。
       enabled: global.nativeFabricUIManager != null,
       description: '移除旧的 Bridge，直接通信，大幅提升性能',
     },
